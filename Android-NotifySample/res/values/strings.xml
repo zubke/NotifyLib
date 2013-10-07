@@ -4,5 +4,11 @@
     <string name="app_name">Android-NotifySample</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_one">Title one</string>
+    <string name="title_two">Title two</string>
+    <string name="title_three">Title three</string>
+    <string name="content_one">Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</string>
+    <string name="content_two">Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</string>
+    <string name="content_three">Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</string>
 
 </resources>

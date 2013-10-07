@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;mDismissListener&apos; in &apos;com.tobrun.android.notify.lib.NotifyManager&apos; to &apos;mNotifyCallback&apos;&#x0A;- Original project: &apos;Android-NotifyLib&apos;&#x0A;- Original element: &apos;com.tobrun.android.notify.lib.NotifyManager.mDismissListener&apos;&#x0A;- Renamed element: &apos;com.tobrun.android.notify.lib.NotifyManager.mNotifyCallback&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;mDismissListener&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;com.tobrun.android.notify.lib{NotifyManager.java[NotifyManager^mDismissListener" name="mNotifyCallback" references="true" setter="false" stamp="1381169313513" textual="false" version="1.0"/>
+</session>
