@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 Tobrun Van Nuland
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tobrun.android.notify.lib.widget;
 
 import android.content.Context;
@@ -35,7 +50,7 @@ public class NotifyFlipper extends ViewAnimator {
 	private ViewGroup mNextView;
 	private NotifyCallback mNotifyCallback;
 
-	public static enum State {
+	public enum State {
 		OPENING(NotifyFlipper.OPENING), OPENEND(View.VISIBLE), CLOSING(NotifyFlipper.CLOSING), CLOSED(View.GONE);
 
 		private int mViewState;
@@ -79,10 +94,9 @@ public class NotifyFlipper extends ViewAnimator {
 		return out;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static BitmapDrawable createShadedBackground(final Context context, final int drawableId) {
 		final Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), drawableId);
-		final BitmapDrawable bitmapDrawable = new BitmapDrawable(bmp);
+		final BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), bmp);
 		bitmapDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 		return bitmapDrawable;
 	}
@@ -141,14 +155,12 @@ public class NotifyFlipper extends ViewAnimator {
 				if (mCurrentView.getChildCount() > 0) {
 					mCurrentView.removeAllViews();
 				}
-				mCurrentView.addView(inflater.inflate(notify.getLayoutId(), mCurrentView, false));
-				mNotifyCallback.onNotifyViewCreated(mCurrentView, notify);
+				handleCreateNotify(inflater, mCurrentView, notify);
 			} else {
 				if (mNextView.getChildCount() > 0) {
 					mNextView.removeAllViews();
 				}
-				mNextView.addView(inflater.inflate(notify.getLayoutId(), mNextView, false));
-				mNotifyCallback.onNotifyViewCreated(mNextView, notify);
+				handleCreateNotify(inflater, mNextView, notify);
 			}
 		} else {
 			// isOpenend()
@@ -156,15 +168,20 @@ public class NotifyFlipper extends ViewAnimator {
 				if (mNextView.getChildCount() > 0) {
 					mNextView.removeAllViews();
 				}
-				mNextView.addView(inflater.inflate(notify.getLayoutId(), mNextView, false));
-				mNotifyCallback.onNotifyViewCreated(mNextView, notify);
+				handleCreateNotify(inflater, mNextView, notify);
 			} else {
 				if (mCurrentView.getChildCount() > 0) {
 					mCurrentView.removeAllViews();
 				}
-				mCurrentView.addView(inflater.inflate(notify.getLayoutId(), mCurrentView, false));
-				mNotifyCallback.onNotifyViewCreated(mCurrentView, notify);
+				handleCreateNotify(inflater, mCurrentView, notify);
 			}
+		}
+	}
+
+	public void handleCreateNotify(final LayoutInflater inflater, final ViewGroup container, final Notify notify) {
+		final View view = mNotifyCallback.onCreateNotifyView(inflater, container);
+		if (view != null) {
+			mNotifyCallback.onNotifyViewCreated(view, notify);
 		}
 	}
 
